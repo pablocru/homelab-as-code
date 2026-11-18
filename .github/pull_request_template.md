@@ -1,4 +1,7 @@
-# Pull request
+<!--
+Write pull requests in English.
+Describe the final diff against main, not the intermediate steps that were later changed.
+-->
 
 ## Why
 
@@ -10,8 +13,7 @@
 
 ## How verified
 
-- [ ] `mise run lint`
-- [ ] `mise run check` (if the change touches a node)
+<!-- Commands run and any manual/visual verification, e.g. `mise run lint`. -->
 
 ## Risk to nodes
 

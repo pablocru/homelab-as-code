@@ -28,6 +28,7 @@ submit a `Pull Request`.
 1. `Fork` the repository and make your changes in a `new branch`.
 1. Document your additions.
 1. Use [Conventional Commits](https://www.conventionalcommits.org).
-1. Submit a `Pull Request`.
+1. Submit a `Pull Request` following
+   [the pull request template](.github/pull_request_template.md).
 
 Thank you for helping improve this project!

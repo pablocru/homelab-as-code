@@ -1,0 +1,7 @@
+---
+- name: Configure the homelab
+  hosts: homelab
+  # No tasks yet: skip fact gathering so even an accidental run cannot contact
+  # the nodes. Remove this once a role needs facts.
+  gather_facts: false
+  tasks: []

@@ -1,0 +1,49 @@
+{
+  // The Biome extension ships no binary and looks for one in node_modules or
+  // PATH. Editors launched from the desktop do not load mise's shell
+  // activation, so point the extension at the mise shim instead.
+  "biome.lsp.bin": "${userHome}/.local/share/mise/shims/biome",
+  "cSpell.words": [
+    "ansible",
+    "asdf",
+    "autosquash",
+    "biome",
+    "cocogitto",
+    "homelab",
+    "jsonc",
+    "lefthook",
+    "mise",
+    "opencode",
+    "pipx",
+    "posix",
+    "pypi",
+    "pyproject",
+    "rumdl",
+    "sshconfig",
+    "uv",
+    "venv",
+    "yamllint"
+  ],
+  "files.associations": {
+    ".ansible-lint": "yaml",
+    ".yamllint": "yaml"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  // The Python environment is the .venv that uv creates, and editors do not
+  // see mise's shims, so the Ansible extension gets explicit paths.
+  "ansible.python.interpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "ansible.validation.lint.path": "${workspaceFolder}/.venv/bin/ansible-lint",
+  "ansible.validation.lint.enabled": true,
+  "yaml.validate": true
+}

@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "EditorConfig.EditorConfig",
+    "GitHub.vscode-github-actions",
+    "redhat.ansible",
+    "rvben.rumdl",
+    "streetsidesoftware.code-spell-checker",
+    "tamasfe.even-better-toml"
+  ]
+}

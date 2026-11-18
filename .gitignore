@@ -1,0 +1,19 @@
+# Python environment owned by uv (see pyproject.toml)
+.venv/
+venv/
+
+# Local secrets and machine-specific values
+.env
+.env.*
+*.secret.yml
+*.local.yml
+mise.local.toml
+
+# Ansible
+*.retry
+.ansible/
+# Galaxy downloads from the mise postinstall hook
+collections/ansible_collections/
+
+# mise project-local state
+.mise/

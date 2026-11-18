@@ -1,0 +1,23 @@
+---
+# Project YAML is checked with yamllint's defaults; .ansible-lint adds the
+# Ansible-specific rules on top. The rule values below are the ones ansible-lint
+# requires from a custom yamllint config, so keep them as upstream defines them.
+extends: default
+
+ignore: |
+  .ansible/
+  .venv/
+  collections/
+
+rules:
+  comments:
+    min-spaces-from-content: 1
+  comments-indentation: false
+  braces:
+    max-spaces-inside: 1
+  octal-values:
+    forbid-implicit-octal: true
+    forbid-explicit-octal: true
+  # GitHub Actions uses the literal key `on`, which is not a boolean here.
+  truthy:
+    check-keys: false

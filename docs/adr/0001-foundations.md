@@ -126,6 +126,9 @@ requires a POSIX control node, hence WSL.
 - `connect:check` is the only task that contacts a node, and it runs outside CI
   because it needs the VPN and `~/.ssh/config`; `site.yml` stays inert until a
   role arrives.
+- The default branch only accepts squash-merged pull requests whose required
+  checks pass; the ruleset in `.github/rulesets/` records that intent, and
+  GitHub applies it only after it is uploaded through the API.
 - Hook installation is part of the `mise install` postinstall hook, so a clone
   is fully set up once tools are installed and the environment is synced.
 - On Windows, Ansible runs inside WSL even though hooks and tasks are portable.

@@ -122,8 +122,8 @@ requires a POSIX control node, hence WSL.
 - Every new command must be a mise task, including the ones CI uses.
 - A task that runs project code depends on the environment sync, which fails
   when `pyproject.toml` changed without a new `uv.lock`.
-- The local gate checks the files a commit touches; CI checks the whole
-  repository.
+- The local gate checks the staged Markdown, JSON and YAML files and runs
+  Ansible over the whole subject; CI checks the whole repository.
 - The control node needs `~/.ssh/config` entries and the VPN; a fresh clone
   cannot reach nodes without them.
 - `nodes:ping` is the only task that contacts a node, and it runs outside CI

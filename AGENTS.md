@@ -79,6 +79,9 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
   fresh clone works from `mise install` without a manual sync step.
 - Tool versions are pinned exactly, including the ones `mise` installs. Never
   use floating versions.
+- The only floating version allowed is the CI runner image (`ubuntu-latest`):
+  every tool is pinned by `mise.toml` and `mise.lock`, so a runner change cannot
+  change what the gate checks.
 
 ## Code conventions
 

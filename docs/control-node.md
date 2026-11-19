@@ -30,19 +30,13 @@ the address, `User` is the login account and `IdentityFile` is the private key.
 
 Both variables would duplicate what `~/.ssh/config` already owns. A single
 source avoids the two disagreeing and keeps connection details out of the
-repository. `ansible.cfg` therefore sets only the inventory path and the local
-collections path.
+repository. `ansible.cfg` therefore sets only the inventory path, the local
+collections path and the remote Python interpreter.
 
 ## Other values outside the repository
 
-Secrets and any value that identifies this network follow the same rule: they
-are documented here with placeholders. The expected format is stated, the real
-value is not. Examples:
-
-- The vault password is provided through `ANSIBLE_VAULT_PASSWORD_FILE`, which
-  points to a file outside the repository.
-- Private variables live in `*.secret.yml` files beside the inventory and are
-  ignored by Git.
+No secrets or private values exist yet. When one is needed, a new ADR chooses
+the mechanism and this document records its expected format and placeholders.
 
 ## Access
 

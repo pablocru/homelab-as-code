@@ -52,11 +52,11 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
   approval. Never apply rules that could lock the maintainer out.
 - **The repo is public: never commit secrets or identifying data** (keys,
   tokens, emails, public IPs, network names, LAN ranges).
-- Be transparent about what lives outside the repo. Whatever an Ansible user
-  would expect to find here and does not (inventory connection details, secrets,
-  private variables) is documented in `docs/` with its expected format and
-  placeholders, and the reason it is not here. Do not document VPN-specific
-  configuration beyond what a role needs to be understood.
+- Be transparent about what lives outside the repo: every detail a reader would
+  expect to find here and does not (connection details, secrets, private values)
+  is documented in `docs/` with its expected format and placeholders, and the
+  reason it is not here. Do not document VPN-specific configuration beyond what
+  a role needs to be understood.
 - Connection details (`HostName`, `User`, key) live in the control node's
   `~/.ssh/config`; the inventory uses the host alias only and never sets
   `ansible_host` or `ansible_user`.

@@ -66,10 +66,10 @@ gives each fact one owner. See `docs/control-node.md`.
 them. Access-control changes are checked in check mode first and require
 explicit approval, because a mistake can lock the maintainer out.
 
-**ADRs instead of milestones.** A backlog of milestones ages badly and hides the
-reason behind a choice. Short ADRs next to the code explain context, decision,
+**ADRs for decisions.** Short ADRs next to the code explain context, decision,
 alternatives and consequences, and a later ADR supersedes an older one instead
-of rewriting it.
+of rewriting it. A decision log lives with the code it explains and does not age
+like a plan.
 
 **Squash merge with Conventional Commits.** `main` stays linear and protected.
 The PR title becomes the commit on `main`, so it follows the same Conventional
@@ -107,8 +107,8 @@ requires a POSIX control node, hence WSL.
   publishes addresses and usernames and duplicates `~/.ssh/config`.
 - **Exposing nodes through the internet:** larger attack surface, and access
   control would become part of this repository.
-- **Milestones or a roadmap document:** no durable record of why a decision was
-  made, and stale by design.
+- **Roadmap document:** no durable record of why a decision was made, and stale
+  by design.
 - **Merge commits:** noisier history and a PR title that does not describe what
   landed.
 - **Custom hook scripts:** a small script per check works, but duplicates what

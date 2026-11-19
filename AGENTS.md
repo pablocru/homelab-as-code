@@ -31,18 +31,16 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
 - A change that introduces or reverses a decision (tool, structure, security
   posture, a new external dependency such as a private repo) includes an ADR in
   the same PR. Routine changes do not need one.
-- ADRs are short and numbered: context, decision, reasons, alternatives
-  discarded, consequences. Do not rewrite history in an ADR: to change a
-  decision, add a new ADR and set the old one's status to "Superseded by NNNN".
-- One decision per ADR; one PR may contain several ADRs. To change one decision
-  inside an ADR that records several, add a new ADR and mark the old one
-  "Superseded in part by NNNN: section name" instead of rewriting it.
+- ADRs are short and numbered; the format and the rule about one decision per
+  pull request are in `docs/adr/0009-adrs-for-decisions.md`.
 - Prefer a code comment or a doc line over an ADR when the reason is local.
 
 ## Invariants
 
-- Everything is reproducible from this repo. A manual change on a node is
-  codified in the same PR or recorded as an exception in an ADR.
+- Everything after the node bootstrap is reproducible from this repo. The
+  bootstrap (OS, VPN, firewall, SSH access) is manual and recorded in
+  `docs/adr/`; any later manual change on a node is codified in the same PR or
+  recorded as an exception in an ADR.
 - Playbooks are idempotent: a second run reports no changes.
 - **A broken environment fails the gate; it never skips it.** Hooks and CI run
   the same mise tasks, and a missing or broken Python environment makes them
@@ -72,8 +70,8 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
   remote GitHub objects) needs explicit approval, and any command not defined in
   `mise.toml` too.** If you need a command that is not supported, justify it,
   and after approval add it to `mise.toml` with a description.
-- Read-only inspection (listing, viewing, linting, syntax and check mode) may
-  run without asking.
+- Read-only inspection (listing, viewing, linting, check-mode previews) may run
+  without asking.
 - **Never change a remote node.** Prepare the change and hand it over.
 - A task that needs the Python environment declares it as a dependency, so a
   fresh clone works from `mise install` without a manual sync step.
@@ -129,8 +127,8 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
 ## Done means
 
 - The checks in `lefthook.yml` pass.
-- If the change touches a node's configuration, check mode against the node also
-  passes (see `mise.toml` for the task).
+- If the change touches a node's configuration, a check-mode preview against the
+  node also passes.
 - The final report states what changed, which checks ran, and what could not be
   verified. Never report a check as passed if it was not run.
 

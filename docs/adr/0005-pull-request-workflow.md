@@ -1,4 +1,4 @@
-# 0002: Default branch ruleset
+# 0005: Pull request workflow
 
 ## Status
 
@@ -17,6 +17,9 @@ zero approvals because there is one maintainer, declares no bypass actors, and
 blocks deletion and non-fast-forward updates. It is stored in
 `.github/rulesets/` and uploaded through the API.
 
+The PR title becomes the commit on `main`, so it follows the same Conventional
+Commits format as local commits, which Cocogitto validates.
+
 ## Reasons
 
 Squash leaves one commit per change on `main`, and that commit is the pull
@@ -31,11 +34,13 @@ and can still change the ruleset in Settings.
   no file in the repository, so its state is invisible to review.
 - **No protection:** one mistake reaches the default branch and the gate becomes
   advisory.
+- **Merge commits:** noisier history and a PR title that does not describe what
+  landed.
 
 ## Consequences
 
 - Direct pushes, force pushes and branch deletion fail for everyone, including
   the maintainer; the escape route is editing the ruleset, not the command line.
 - A pull request whose branch is behind `main` must be updated before merging.
-- The ruleset file is a record and an input for `gh api`; GitHub does not read
-  it on its own.
+- The ruleset file records the intent and is an input for `gh api`; GitHub does
+  not read it on its own, so the rules apply only after they are uploaded.

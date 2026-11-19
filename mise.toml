@@ -9,7 +9,8 @@ python.uv_venv_auto = "create|source"
 
 [tools]
 uv = "0.13.8"
-# Not on PyPI, or must outlive the environment it validates.
+# Tools that do not need to see the project's Python packages; see the ADR on
+# tool ownership.
 # Keep the $schema version in biome.json equal to this one.
 biome = "2.6.7"
 cocogitto = "7.0.0"
@@ -38,7 +39,8 @@ yamllint "$@"
 description = "Lint Markdown files"
 run = "rumdl check"
 
-# biome.json narrows Biome to JSON, so no path list is needed.
+# biome.json narrows Biome to JSON, so `mise run json:lint` needs no path list;
+# the hook appends the staged files.
 [tasks."json:lint"]
 description = "Check JSON formatting"
 run = "biome ci"

@@ -121,8 +121,6 @@ requires a POSIX control node, hence WSL.
   when `pyproject.toml` changed without a new `uv.lock`.
 - The local gate checks the files a commit touches; CI checks the whole
   repository.
-- lefthook publishes no musl wheel, so an Alpine control node would need another
-  installation channel.
 - The control node needs `~/.ssh/config` entries and the VPN; a fresh clone
   cannot reach nodes without them.
 - `nodes:ping` is the only task that contacts a node, and it runs outside CI

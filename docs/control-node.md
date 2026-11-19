@@ -4,6 +4,21 @@ The control node is the machine where `mise run` executes. It holds everything
 that is specific to this homelab and must not be published. Ansible reads the
 connection details there, never from this repository.
 
+## Prerequisites
+
+Control node:
+
+- mise installed.
+- An `~/.ssh/config` entry as described below.
+- The VPN client joined.
+
+Node:
+
+- Ubuntu Server 24.04 LTS.
+- VPN and firewall already set up.
+- SSH access with the control node's key.
+- `/usr/bin/python3` present.
+
 ## SSH configuration
 
 Host aliases resolve through the standard OpenSSH client configuration at
@@ -42,4 +57,5 @@ the mechanism and this document records its expected format and placeholders.
 
 Nodes are reachable only through the VPN. That configuration belongs to the
 control node and is out of scope for this document: playbooks only assume that
-the alias resolves and the SSH connection works.
+the alias resolves and the SSH connection works. The node is prepared by hand
+before this repository takes over, see `docs/adr/0007-manual-node-bootstrap.md`.

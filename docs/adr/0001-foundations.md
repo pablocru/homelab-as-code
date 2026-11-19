@@ -125,7 +125,7 @@ requires a POSIX control node, hence WSL.
   installation channel.
 - The control node needs `~/.ssh/config` entries and the VPN; a fresh clone
   cannot reach nodes without them.
-- `connect:check` is the only task that contacts a node, and it runs outside CI
+- `nodes:ping` is the only task that contacts a node, and it runs outside CI
   because it needs the VPN and `~/.ssh/config`; `site.yml` stays inert until a
   role arrives.
 - The default branch only accepts squash-merged pull requests whose required

@@ -69,20 +69,20 @@ run = "ansible-galaxy collection install -r collections/requirements.yml -p coll
 description = "Install the git hooks"
 run = "lefthook install"
 
-# `check` runs a playbook with no tasks, so it never opens a connection. This is
-# the smallest task that proves the inventory alias, SSH and the remote
+# `site:check` runs a playbook with no tasks, so it never opens a connection.
+# This is the smallest task that proves the inventory alias, SSH and the remote
 # interpreter work, and the only one that contacts a node today.
-[tasks."connect:check"]
-description = "Check that Ansible reaches the nodes (read-only, needs VPN)"
+[tasks."nodes:ping"]
+description = "Check that Ansible reaches every node in the `homelab` group (read-only, needs VPN)"
 depends = ["python:sync"]
 run = "ansible homelab -m ansible.builtin.ping"
 
-[tasks.check]
+[tasks."site:check"]
 description = "Preview against real nodes (check mode, needs VPN)"
 depends = ["python:sync"]
 run = "ansible-playbook --check --diff playbooks/site.yml"
 
-[tasks.apply]
+[tasks."site:apply"]
 description = "Change real nodes (needs VPN)"
 depends = ["python:sync"]
 run = "ansible-playbook playbooks/site.yml"

@@ -121,6 +121,10 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
   remote object needs approval (show the exact command first).
 - The PR title is the commit that lands on `main` (squash merge): write it as a
   Conventional Commit. Follow `.github/pull_request_template.md`.
+- A pull request body is written unwrapped, one line per paragraph and per
+  bullet, so GitHub renders it as written and a later edit diffs a line, not a
+  block. The 80-column rule applies to Markdown stored in this repository, where
+  a linter reads it.
 - The developer merges and closes. Never delete anything on GitHub. Never run
   `gh auth` or token commands.
 

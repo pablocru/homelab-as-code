@@ -41,9 +41,9 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
 - Everything is reproducible from this repo. A manual change on a node is
   codified in the same PR or recorded as an exception in an ADR.
 - Playbooks are idempotent: a second run reports no changes.
-- **The gate outlives the environment it checks.** Tooling that enforces quality
-  is installed outside the project environment it validates, so a broken or
-  missing environment cannot disable validation.
+- **A broken environment fails the gate; it never skips it.** Hooks and CI run
+  the same mise tasks, and a missing or broken Python environment makes them
+  fail instead of being skipped.
 - **Each dependency has one owner.** Python packages and the interpreter version
   belong to the Python environment; every other tool belongs to the toolchain
   manager. Nothing is installed twice.

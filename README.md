@@ -6,9 +6,10 @@ every decision is written down with its reason.
 
 ## Principles
 
-- **Everything is reproducible.** Every part of the homelab is versioned and can
-  be rebuilt from scratch through code. No manual configuration, no undocumented
-  changes.
+- **Everything after the node bootstrap is reproducible.** Once a node is
+  reachable over SSH and the VPN, every part of its configuration is versioned
+  and can be rebuilt through code. The bootstrap itself is manual and documented
+  in `docs/control-node.md` and `docs/adr/`.
 - **Treat it as production.** Idempotent playbooks, a protected `main`, CI, and
   checks before changes reach a real node.
 - **Decisions are documented.** The _why_ lives in `docs/adr/`.
@@ -28,6 +29,7 @@ submit a `Pull Request`.
 1. `Fork` the repository and make your changes in a `new branch`.
 1. Document your additions.
 1. Use [Conventional Commits](https://www.conventionalcommits.org).
-1. Submit a `Pull Request`.
+1. Submit a `Pull Request` following
+   [the pull request template](.github/pull_request_template.md).
 
 Thank you for helping improve this project!

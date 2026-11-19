@@ -1,0 +1,15 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Every format used here (YAML, TOML, JSON, INI, Python, Markdown) uses two
+# spaces and LF, so there are no per-format overrides. Markdown keeps trailing
+# whitespace trimmed to satisfy rumdl's defaults.
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true

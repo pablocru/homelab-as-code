@@ -1,0 +1,42 @@
+---
+name: Quality gate
+
+# The gate only reads, so it runs on every push and on pull requests, which
+# forks need.
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Install mise
+        uses: jdx/mise-action@v5.2.8
+
+      # One step per subject: the failing step names what failed. Cheapest
+      # checks run first, so a fast failure does not wait on ansible-lint.
+      - name: Lint YAML
+        run: mise run yaml:lint
+
+      - name: Lint Markdown
+        run: mise run markdown:lint
+
+      - name: Check JSON formatting
+        run: mise run json:lint
+
+      - name: Lint Ansible
+        run: mise run ansible:lint

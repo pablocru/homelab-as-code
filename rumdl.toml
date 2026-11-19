@@ -1,0 +1,20 @@
+[global]
+editorconfig = true
+exclude = ["LICENSE"]
+
+[MD013]
+code_blocks = false
+reflow = true
+reflow-mode = "normalize"
+
+[MD029]
+style = "one"
+
+[MD060]
+enabled = true
+style = "aligned"
+
+[per-file-ignores]
+# The template starts with an HTML comment so its instructions stay out of the
+# rendered pull request, which leaves the file without a leading heading.
+".github/pull_request_template.md" = ["MD041"]

@@ -1,0 +1,15 @@
+---
+# Production profile: the strictest upstream preset, with no local exceptions.
+profile: production
+
+# Run without arguments, ansible-lint discovers the files itself, and it would
+# also lint vendored collections and editing metadata. Paths here resolve
+# relative to this file.
+exclude_paths:
+  # .cache/ is implicit only while exclude_paths is absent, so it is explicit.
+  - .cache/
+  - .github/
+  # The environment holds dependencies, not project files.
+  - .venv/
+  # Galaxy installs collections here; the requirements file is project code.
+  - collections/ansible_collections/

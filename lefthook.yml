@@ -1,0 +1,28 @@
+---
+# Hooks run the same mise tasks as CI, narrowed to the staged Markdown, JSON and
+# YAML files; Ansible checks the whole subject because it needs cross-file
+# context. CI runs every task over the whole repository. The tasks own the
+# commands, so a hook never calls a tool directly.
+pre-commit:
+  parallel: true
+  jobs:
+    - name: yaml
+      run: mise run yaml:lint {staged_files}
+      glob: "{*.yml,*.yaml,.yamllint,**/*.yml,**/*.yaml}"
+    - name: markdown
+      run: mise run markdown:lint {staged_files}
+      glob: "{*.md,**/*.md}"
+    - name: json
+      run: mise run json:lint {staged_files}
+      glob: "{*.json,*.jsonc,**/*.json,**/*.jsonc}"
+    # Ansible needs cross-file context and a fixed startup cost, so it checks
+    # the whole subject and is skipped when a commit touches no Ansible file.
+    - name: ansible
+      run: mise run ansible:lint
+      glob: "{.ansible-lint,ansible.cfg,collections/requirements.yml,\
+        playbooks/**,inventories/**,roles/**}"
+
+commit-msg:
+  jobs:
+    - name: conventional commit
+      run: mise run commit:lint {1}

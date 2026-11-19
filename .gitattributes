@@ -1,0 +1,3 @@
+# Ansible, YAML, TOML and the hooks are line-ending sensitive: keep LF in the
+# working tree on every platform, including Windows checkouts.
+* text=auto eol=lf

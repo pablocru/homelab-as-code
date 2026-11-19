@@ -1,0 +1,5 @@
+---
+# Pinned so every control node and CI resolve the same code.
+collections:
+  - name: ansible.posix
+    version: 2.2.2

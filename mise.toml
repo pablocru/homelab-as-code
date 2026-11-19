@@ -1,0 +1,84 @@
+[settings]
+pin = true
+lockfile = true
+# uv owns the interpreter version in .python-version; mise reads and installs it.
+idiomatic_version_file_enable_tools = ["python"]
+# mise creates .venv before a task runs, so a fresh clone has the path that
+# `python:sync` then fills with packages.
+python.uv_venv_auto = "create|source"
+
+[tools]
+uv = "0.13.8"
+# Tools that do not need to see the project's Python packages; see the ADR on
+# tool ownership.
+# Keep the $schema version in biome.json equal to this one.
+biome = "2.6.7"
+cocogitto = "7.0.0"
+rumdl = "0.3.4"
+lefthook = "2.2.2"
+
+[hooks]
+# Runs even when every tool is installed, so `mise install` is the whole setup.
+postinstall = "mise run deps"
+
+[tasks."python:sync"]
+description = "Sync the Python environment with uv.lock"
+run = "uv sync --locked"
+
+[tasks."yaml:lint"]
+description = "Lint YAML files"
+depends = ["python:sync"]
+run = """
+#!/usr/bin/env bash
+# mise appends its arguments; yamllint has no default path.
+if [ "$#" -eq 0 ]; then set -- .; fi
+yamllint "$@"
+"""
+
+[tasks."markdown:lint"]
+description = "Lint Markdown files"
+run = "rumdl check"
+
+# biome.json narrows Biome to JSON, so `mise run json:lint` needs no path list;
+# the hook appends the staged files.
+[tasks."json:lint"]
+description = "Check JSON formatting"
+run = "biome ci"
+
+[tasks."json:fmt"]
+description = "Format JSON files"
+run = "biome check --write"
+
+# No arguments: ansible-lint discovers files, minus what .ansible-lint excludes.
+[tasks."ansible:lint"]
+description = "Lint Ansible files"
+depends = ["python:sync"]
+run = "ansible-lint"
+
+[tasks.lint]
+description = "Run every linter in parallel"
+depends = ["yaml:lint", "markdown:lint", "json:lint", "ansible:lint"]
+
+[tasks.deps]
+description = "Sync the environment, install collections and git hooks"
+depends = ["collections:install", "hooks:install"]
+
+[tasks."collections:install"]
+description = "Install the Ansible collections"
+depends = ["python:sync"]
+run = "ansible-galaxy collection install -r collections/requirements.yml -p collections"
+
+[tasks."hooks:install"]
+description = "Install the git hooks"
+run = "lefthook install"
+
+# The smallest task that proves the inventory alias, SSH and the remote Python
+# interpreter work. It is the only task that contacts a node.
+[tasks."nodes:ping"]
+description = "Check that Ansible reaches every node in the `homelab` group (read-only, needs VPN)"
+depends = ["python:sync"]
+run = "ansible homelab -m ansible.builtin.ping"
+
+[tasks."commit:lint"]
+description = "Validate a commit message file"
+run = "cog verify --file"

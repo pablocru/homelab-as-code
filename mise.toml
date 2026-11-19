@@ -10,6 +10,7 @@ python.uv_venv_auto = "create|source"
 [tools]
 uv = "0.13.8"
 # Not on PyPI, or must outlive the environment it validates.
+# Keep the $schema version in biome.json equal to this one.
 biome = "2.6.7"
 cocogitto = "7.0.0"
 rumdl = "0.3.4"

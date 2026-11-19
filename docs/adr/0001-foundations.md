@@ -4,6 +4,9 @@
 
 Accepted.
 
+Foundational snapshot: it records several decisions, each of which may be
+superseded in part by a later ADR.
+
 ## Context
 
 `homelab-as-code` starts from an empty repository. It manages a personal homelab

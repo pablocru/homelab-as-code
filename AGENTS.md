@@ -34,6 +34,9 @@ messages, PR text. Only the chat with the maintainer may be in Spanish.
 - ADRs are short and numbered: context, decision, reasons, alternatives
   discarded, consequences. Do not rewrite history in an ADR: to change a
   decision, add a new ADR and set the old one's status to "Superseded by NNNN".
+- One decision per ADR; one PR may contain several ADRs. To change one decision
+  inside an ADR that records several, add a new ADR and mark the old one
+  "Superseded in part by NNNN: section name" instead of rewriting it.
 - Prefer a code comment or a doc line over an ADR when the reason is local.
 
 ## Invariants

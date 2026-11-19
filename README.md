@@ -6,9 +6,10 @@ every decision is written down with its reason.
 
 ## Principles
 
-- **Everything is reproducible.** Every part of the homelab is versioned and can
-  be rebuilt from scratch through code. No manual configuration, no undocumented
-  changes.
+- **Everything after the node bootstrap is reproducible.** Once a node is
+  reachable over SSH and the VPN, every part of its configuration is versioned
+  and can be rebuilt through code. The bootstrap itself is manual and documented
+  in `docs/control-node.md` and `docs/adr/`.
 - **Treat it as production.** Idempotent playbooks, a protected `main`, CI, and
   checks before changes reach a real node.
 - **Decisions are documented.** The _why_ lives in `docs/adr/`.

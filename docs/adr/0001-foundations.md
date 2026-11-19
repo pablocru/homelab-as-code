@@ -10,7 +10,8 @@ Accepted.
 from a Linux control node, is public, and is maintained by a developer rather
 than a sysadmin. The homelab must be treated as production: changes are
 reviewed, reproducible and reversible. A Windows control node is possible later
-through WSL, so automation must not depend on POSIX shell scripts.
+through WSL, so automation must not depend on POSIX shell scripts beyond a task
+script that supplies default arguments.
 
 ## Decision
 
@@ -47,10 +48,11 @@ justified exceptions: `ansible-lint` imports `ansible-core` and requires
 the versions drift and leave the transitive set outside a lock.
 
 **lefthook for hooks.** A single binary, configured in `lefthook.yml`, validates
-the commit message and runs the same lint tasks as CI, narrowed to the files a
-commit touches. Hooks are the local, incremental gate; CI is the shared,
-complete one. lefthook is installed outside the Python environment, so a broken
-environment cannot disable the gate.
+the commit message and runs the same lint tasks as CI, narrowed to the staged
+Markdown, JSON and YAML files, while Ansible checks the whole subject because it
+needs cross-file context. Hooks are the local, incremental gate; CI is the
+shared, complete one. lefthook is installed outside the Python environment, so a
+broken environment cannot disable the gate.
 
 **SSH-alias inventory.** Hosts are named by SSH alias; `~/.ssh/config` owns
 `HostName`, `User` and the key. The inventory never sets `ansible_host` or
@@ -73,8 +75,8 @@ Commits format as local commits.
 **Portable automation through pinned binaries.** Hooks are mise tasks that call
 pinned binaries instead of repository-owned scripts: Biome formats and checks
 JSON wherever it lives, Cocogitto validates commit messages, and only the
-Ansible toolchain needs a Python environment. Nothing depends on a POSIX shell
-script, so hooks also work from Git Bash or WSL on Windows. Ansible itself still
+Ansible toolchain needs a Python environment. Task scripts never implement
+logic, so hooks also work from Git Bash or WSL on Windows. Ansible itself still
 requires a POSIX control node, hence WSL.
 
 ## Alternatives discarded

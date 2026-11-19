@@ -19,7 +19,8 @@ pre-commit:
     # the whole subject and is skipped when a commit touches no Ansible file.
     - name: ansible
       run: mise run ansible:lint
-      glob: "{playbooks,inventories,roles}/**"
+      glob: "{.ansible-lint,ansible.cfg,collections/requirements.yml,\
+        playbooks/**,inventories/**,roles/**}"
 
 commit-msg:
   jobs:

@@ -11,4 +11,5 @@ exclude_paths:
   - .github/
   # The environment holds dependencies, not project files.
   - .venv/
-  - collections/
+  # Galaxy installs collections here; the requirements file is project code.
+  - collections/ansible_collections/

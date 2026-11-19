@@ -7,7 +7,7 @@ extends: default
 ignore: |
   .ansible/
   .venv/
-  collections/
+  collections/ansible_collections/
 
 rules:
   comments:

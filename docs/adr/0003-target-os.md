@@ -18,10 +18,9 @@ every check validates. `ansible.cfg` pins `interpreter_python` to
 
 ## Reasons
 
-Declaring what runs keeps the repository honest: `site:check` and `site:apply`
-exercise 22.04, so 22.04 is what the gate can vouch for. Pinning the interpreter
-by path keeps module execution reproducible across reboots and package updates,
-instead of depending on whichever Python discovery finds first.
+Declaring what runs keeps the repository honest. Pinning the interpreter by path
+keeps module execution reproducible across reboots and package updates, instead
+of depending on whichever Python discovery finds first.
 
 ## Alternatives discarded
 

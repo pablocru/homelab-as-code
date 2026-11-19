@@ -127,8 +127,7 @@ requires a POSIX control node, hence WSL.
 - The control node needs `~/.ssh/config` entries and the VPN; a fresh clone
   cannot reach nodes without them.
 - `nodes:ping` is the only task that contacts a node, and it runs outside CI
-  because it needs the VPN and `~/.ssh/config`; `site.yml` stays inert until a
-  role arrives.
+  because it needs the VPN and `~/.ssh/config`.
 - The default branch only accepts squash-merged pull requests whose required
   checks pass; the ruleset in `.github/rulesets/` records that intent, and
   GitHub applies it only after it is uploaded through the API.

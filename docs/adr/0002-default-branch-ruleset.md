@@ -7,7 +7,7 @@ Accepted.
 ## Context
 
 `main` holds what runs in the homelab. A direct push, a force push or a merge
-that skipped the quality gate would reach the nodes on the next `site:apply`.
+that skipped the quality gate would reach the nodes unchallenged.
 
 ## Decision
 

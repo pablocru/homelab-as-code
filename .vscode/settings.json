@@ -3,26 +3,6 @@
   // PATH. Editors launched from the desktop do not load mise's shell
   // activation, so point the extension at the mise shim instead.
   "biome.lsp.bin": "${userHome}/.local/share/mise/shims/biome",
-  "cSpell.words": [
-    "ansible",
-    "asdf",
-    "autosquash",
-    "biome",
-    "cocogitto",
-    "homelab",
-    "jsonc",
-    "lefthook",
-    "mise",
-    "opencode",
-    "posix",
-    "pypi",
-    "pyproject",
-    "rumdl",
-    "sshconfig",
-    "uv",
-    "venv",
-    "yamllint"
-  ],
   "files.associations": {
     ".ansible-lint": "yaml",
     ".yamllint": "yaml"

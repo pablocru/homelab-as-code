@@ -5,8 +5,7 @@ venv/
 # Local secrets and machine-specific values
 .env
 .env.*
-*.secret.yml
-*.local.yml
+!.env.example
 mise.local.toml
 
 # Ansible

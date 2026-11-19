@@ -30,16 +30,17 @@ any control node.
 Expected format, with placeholders instead of real values:
 
 ```sshconfig
-Host <hostname>
-  HostName <ip>
+Host <alias>
+  HostName <address>
   User <username>
   IdentityFile ~/.ssh/<private_key>
   IdentitiesOnly yes
 ```
 
 `Host` is the alias used in `inventories/production/hosts.yml`, `HostName` is
-the address, `User` is the login account and `IdentityFile` is the private key.
-`IdentitiesOnly yes` stops the client from offering unrelated keys.
+the address the alias resolves to, `User` is the login account and
+`IdentityFile` is the private key. `IdentitiesOnly yes` stops the client from
+offering unrelated keys.
 
 ## Why the inventory has no `ansible_host` or `ansible_user`
 

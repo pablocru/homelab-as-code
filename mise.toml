@@ -73,7 +73,7 @@ description = "Install the git hooks"
 run = "lefthook install"
 
 # The smallest task that proves the inventory alias, SSH and the remote Python
-# interpreter work. It is the only task that contacts a node.
+# interpreter work.
 [tasks."nodes:ping"]
 description = "Check that Ansible reaches every node in the `homelab` group (read-only, needs VPN)"
 depends = ["python:sync"]

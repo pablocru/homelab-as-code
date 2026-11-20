@@ -17,6 +17,8 @@ Node:
 - Ubuntu Server 24.04 LTS.
 - VPN and firewall already set up.
 - SSH access with the control node's key.
+- A login user that can escalate with sudo; the password is prompted at run
+  time.
 - `/usr/bin/python3` present.
 
 ## SSH configuration
@@ -47,7 +49,7 @@ offering unrelated keys.
 Both variables would duplicate what `~/.ssh/config` already owns. A single
 source avoids the two disagreeing and keeps connection details out of the
 repository. `ansible.cfg` therefore sets only the inventory path, the local
-collections path and the remote Python interpreter.
+collections path, the roles path and the remote Python interpreter.
 
 ## Other values outside the repository
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted.
+Accepted. Amended by 0010.
 
 ## Context
 
@@ -40,6 +40,6 @@ without a second manifest to maintain.
 ## Consequences
 
 - Every new command must be a mise task, including the ones CI uses.
-- `nodes:ping` is the only task that contacts a node, and it runs outside CI
-  because it needs the VPN and `~/.ssh/config`.
+- The tasks that reach a node need the VPN and `~/.ssh/config`, so none of them
+  runs in CI.
 - On Windows, Ansible runs inside WSL even though hooks and tasks are portable.

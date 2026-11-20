@@ -52,7 +52,7 @@ run = "biome check --write"
 # No arguments: ansible-lint discovers files, minus what .ansible-lint excludes.
 [tasks."ansible:lint"]
 description = "Lint Ansible files"
-depends = ["python:sync"]
+depends = ["collections:install"]
 run = "ansible-lint"
 
 [tasks.lint]
@@ -73,11 +73,22 @@ description = "Install the git hooks"
 run = "lefthook install"
 
 # The smallest task that proves the inventory alias, SSH and the remote Python
-# interpreter work. It is the only task that contacts a node.
+# interpreter work.
 [tasks."nodes:ping"]
 description = "Check that Ansible reaches every node in the `homelab` group (read-only, needs VPN)"
 depends = ["python:sync"]
 run = "ansible homelab -m ansible.builtin.ping"
+
+# Run it before every `site:apply`; a second `site:apply` must report `changed=0`.
+[tasks."site:check"]
+description = "Preview changes on real nodes without applying them (check mode, prompts for the sudo password, needs VPN)"
+depends = ["collections:install"]
+run = "ansible-playbook --ask-become-pass --check --diff playbooks/site.yml"
+
+[tasks."site:apply"]
+description = "Change real nodes (prompts for the sudo password, needs VPN)"
+depends = ["collections:install"]
+run = "ansible-playbook --ask-become-pass playbooks/site.yml"
 
 [tasks."commit:lint"]
 description = "Validate a commit message file"

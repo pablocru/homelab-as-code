@@ -1,0 +1,11 @@
+---
+# IANA time zone name. UTC has no daylight saving changes, which keeps cron
+# schedules and log timestamps unambiguous across nodes.
+base_timezone: UTC
+
+# Packages every node needs.
+base_packages:
+  - ca-certificates
+  - curl
+  - tzdata
+  - unattended-upgrades

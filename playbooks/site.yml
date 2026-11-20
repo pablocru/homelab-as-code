@@ -1,0 +1,8 @@
+---
+# Entry point: every role is applied to the nodes in the `homelab` group.
+# `become` escalates to root with sudo; the password is prompted at run time.
+- name: Configure the homelab
+  hosts: homelab
+  become: true
+  roles:
+    - role: base
